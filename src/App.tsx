@@ -150,6 +150,9 @@ function App() {
           <div className="relative pointer-events-auto">
             <button
               onClick={() => setLangMenuOpen(!langMenuOpen)}
+              aria-label={t.nav.languageLabel || 'Change language'}
+              aria-haspopup="menu"
+              aria-expanded={langMenuOpen}
               className={`flex items-center justify-center p-2.5 md:p-3 rounded-full transition-all duration-300 border-2 hover:-translate-y-0.5 backdrop-blur-md ${isHeaderBlack ? 'border-black/10 hover:border-black/30 hover:bg-black/5 bg-black/5 text-black' : 'border-[#05DC7F]/20 hover:border-[#05DC7F]/50 bg-black/5 hover:bg-[#05DC7F]/10 text-[#F2F2F2] hover:text-[#05DC7F] drop-shadow-[0_0_8px_rgba(5,220,127,0)] hover:drop-shadow-[0_0_8px_rgba(5,220,127,0.5)]'}`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -180,13 +183,14 @@ function App() {
         </div>
       </nav>
 
+      <main>
       <section className="hero">
         <div className="hero-grid"></div>
 
         <div className="floating-element float-1"></div>
         <div className="floating-element float-2"></div>
         <div className="floating-element float-3">
-          <img src={logoGreen} alt="K" className="w-[200px] h-[200px] object-contain" />
+          <img src={logoGreen} alt="" aria-hidden="true" width={200} height={200} fetchPriority="high" decoding="async" className="w-[200px] h-[200px] object-contain" />
         </div>
 
         <div className="hero-content">
@@ -356,8 +360,8 @@ function App() {
         </div>
 
         {/* Floating Background K Vectors */}
-        <img src={logoGreen} alt="K" className="hidden lg:block absolute top-[25%] start-[10%] w-32 h-32 object-contain brightness-0 opacity-[0.08] pointer-events-none animate-[float_6s_ease-in-out_infinite]" />
-        <img src={logoGreen} alt="K" className="hidden lg:block absolute bottom-[25%] end-[10%] w-48 h-48 object-contain brightness-0 opacity-[0.08] pointer-events-none animate-[float_8s_ease-in-out_infinite_reverse]" />
+        <img src={logoGreen} alt="" aria-hidden="true" loading="lazy" decoding="async" className="hidden lg:block absolute top-[25%] start-[10%] w-32 h-32 object-contain brightness-0 opacity-[0.08] pointer-events-none animate-[float_6s_ease-in-out_infinite]" />
+        <img src={logoGreen} alt="" aria-hidden="true" loading="lazy" decoding="async" className="hidden lg:block absolute bottom-[25%] end-[10%] w-48 h-48 object-contain brightness-0 opacity-[0.08] pointer-events-none animate-[float_8s_ease-in-out_infinite_reverse]" />
 
         {/* Foreground Action Panel (Neo-Brutalist) */}
         <div className="max-w-3xl w-full flex flex-col items-center text-center z-10 mt-0 md:mt-10">
@@ -417,6 +421,7 @@ function App() {
         </div>
       </section>
 
+      </main>
       <footer className="w-full min-h-screen md:h-screen bg-[#000000] snap-start flex flex-col relative overflow-hidden">
         {/* Giant Subtle Logo in Background/Bottom */}
         <div className="absolute font-sans bottom-0 left-0 w-full flex justify-center translate-y-[28%] md:translate-y-[22%] pointer-events-none select-none z-0">
@@ -445,19 +450,19 @@ function App() {
               <div className="w-12 md:w-16 h-1 md:h-1.5 bg-[#05DC7F] mt-1 md:mt-2 rounded-full shadow-[0_0_15px_rgba(5,220,127,0.3)]"></div>
 
               <div className="flex flex-wrap gap-x-6 md:gap-x-8 gap-y-3 md:gap-y-4 mt-6 md:mt-8 pt-6 md:pt-8 border-t border-[#1F1F1F]/50">
-                <p className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/40 tracking-wider">
+                <p className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 tracking-wider">
                   © 2026 Kreli. {t.footer.madeIn} <span role="img" aria-label="morocco">🇲🇦</span>
                 </p>
                 <div className="flex gap-4 md:gap-6">
-                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/40 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.privacy}</a>
-                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/40 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.terms}</a>
+                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.privacy}</a>
+                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.terms}</a>
                 </div>
               </div>
             </div>
 
             {/* Social Cards */}
             <div className="flex flex-col gap-3 md:gap-5 w-full md:w-auto">
-              <h4 className="font-mono text-xs md:text-sm rtl:text-base uppercase tracking-[0.3em] rtl:tracking-normal text-[#05DC7F] font-bold mb-1 md:mb-2 md:text-start md:rtl:text-end ltr:text-right">{t.footer.connect}</h4>
+              <h3 className="font-mono text-xs md:text-sm rtl:text-base uppercase tracking-[0.3em] rtl:tracking-normal text-[#05DC7F] font-bold mb-1 md:mb-2 md:text-start md:rtl:text-end ltr:text-right">{t.footer.connect}</h3>
               <div className="flex flex-col gap-3 md:gap-4">
                 {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
                   <a key={social} href="#" className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 bg-[#1F1F1F] hover:bg-[#142D2B] border border-transparent hover:border-[#05DC7F]/50 rounded-xl md:rounded-2xl transition-all duration-300 group min-w-0 md:min-w-[260px] shadow-sm hover:shadow-lg hover:-translate-y-1">

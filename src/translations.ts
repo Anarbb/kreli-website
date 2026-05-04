@@ -4,6 +4,7 @@ export const translations = {
   ar: {
     nav: {
       coming: 'قريباً 2026',
+      languageLabel: 'تغيير اللغة',
     },
     hero: {
       badge: 'المنصة الأولى في المغرب',
@@ -58,6 +59,7 @@ export const translations = {
   fr: {
     nav: {
       coming: 'Bientôt 2026',
+      languageLabel: 'Changer de langue',
     },
     hero: {
       badge: 'Premier au Maroc',
@@ -112,6 +114,7 @@ export const translations = {
   en: {
     nav: {
       coming: 'Coming 2026',
+      languageLabel: 'Change language',
     },
     hero: {
       badge: 'First in Morocco',
