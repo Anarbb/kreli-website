@@ -34,3 +34,11 @@ jobs:
           protocol: ftps
           local-dir: ./dist/
           server-dir: ./
+          # Host rejects .htaccess over FTP (553 Prohibited file name).
+          # Upload it once manually via the hosting File Manager.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+            **/.htaccess
