@@ -4,6 +4,9 @@ import './index.css';
 import logoGreen from './assets/images/kreli-logo-green.png';
 import { translations, Language } from './translations';
 
+// Only list channels that exist. Add LinkedIn / X here once the accounts are live.
+const SOCIALS = [{ name: 'Instagram', url: 'https://www.instagram.com/kreli.ma/' }];
+
 function App() {
   const [state, handleSubmit] = useForm("xykbeano");
   const [isHeaderBlack, setIsHeaderBlack] = useState(false);
@@ -16,6 +19,8 @@ function App() {
   const waitlistRef = useRef<HTMLElement>(null);
 
   const t = translations[lang];
+  // The legal pages exist in English and French; Arabic visitors get the browser-language default.
+  const legalQuery = lang === 'ar' ? '' : `?lang=${lang}`;
 
   useEffect(() => {
     localStorage.setItem('kreli_lang', lang);
@@ -454,8 +459,8 @@ function App() {
                   © 2026 Kreli. {t.footer.madeIn} <span role="img" aria-label="morocco">🇲🇦</span>
                 </p>
                 <div className="flex gap-4 md:gap-6">
-                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.privacy}</a>
-                  <a href="#" className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.terms}</a>
+                  <a href={`/privacy${legalQuery}`} className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.privacy}</a>
+                  <a href={`/terms${legalQuery}`} className="font-mono text-[10px] md:text-xs text-[#F2F2F2]/70 hover:text-[#05DC7F] transition-colors tracking-wider">{t.footer.terms}</a>
                 </div>
               </div>
             </div>
@@ -464,8 +469,8 @@ function App() {
             <div className="flex flex-col gap-3 md:gap-5 w-full md:w-auto">
               <h3 className="font-mono text-xs md:text-sm rtl:text-base uppercase tracking-[0.3em] rtl:tracking-normal text-[#05DC7F] font-bold mb-1 md:mb-2 md:text-start md:rtl:text-end ltr:text-right">{t.footer.connect}</h3>
               <div className="flex flex-col gap-3 md:gap-4">
-                {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                  <a key={social} href="#" className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 bg-[#1F1F1F] hover:bg-[#142D2B] border border-transparent hover:border-[#05DC7F]/50 rounded-xl md:rounded-2xl transition-all duration-300 group min-w-0 md:min-w-[260px] shadow-sm hover:shadow-lg hover:-translate-y-1">
+                {SOCIALS.map(({ name: social, url }) => (
+                  <a key={social} href={url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-6 md:px-8 py-4 md:py-5 bg-[#1F1F1F] hover:bg-[#142D2B] border border-transparent hover:border-[#05DC7F]/50 rounded-xl md:rounded-2xl transition-all duration-300 group min-w-0 md:min-w-[260px] shadow-sm hover:shadow-lg hover:-translate-y-1">
                     <span className="font-sans font-bold text-[#F2F2F2] text-base md:text-lg tracking-wide">{social}</span>
                     <span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#F2F2F2]/10 group-hover:bg-[#05DC7F] group-hover:shadow-[0_0_12px_#05DC7F] transition-all duration-300"></span>
                   </a>
